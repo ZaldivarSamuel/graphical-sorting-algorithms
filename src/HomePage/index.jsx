@@ -25,30 +25,64 @@ class HomePage extends React.Component{
 
   drawSquares(){
 
+    var rectangles = [new Rectangle(20, 200)];
+
     var c = document.getElementById("selection-sort-canvas");
     var ctx = c.getContext("2d");
-    ctx.beginPath();
-    ctx.fillStyle = 'white';
-    ctx.fillRect(20,299,10,200);
 
+    let style = {
+      height() {
+        return +getComputedStyle(c).getPropertyValue('height').slice(0,-2);
+      },
+      width() {
+        return +getComputedStyle(c).getPropertyValue('width').slice(0,-2);
+      }
+  }
+
+    ctx.beginPath();
+    ctx.fillStyle = 'yellow';
+
+    for(var i = 0; i < rectangles.length; i++){
+      console.log("Index: " + i + ", xPos: " + rectangles[i].getXPos() + ", height: " + rectangles[i].getHeight());
+      ctx.fillRect(rectangles[i].getXPos(),style.height() - 205,10, rectangles[i].getHeight());
+    }
   }
 
   fixDPI(){
     let canvas = document.getElementById("selection-sort-canvas");
-    let ctx = canvas.getContext("2d");
     let dpi = window.devicePixelRatio;
 
-    // let style = {
-    //   height(){
-    //     return window.getComputedStyle(canvas).getProperty('height').slice(0, -2);
-    //   },
-    //   width(){
-    //     return window.getComputedStyle(canvas).getProperty('width').slice(0,-2);
-    //   }
-    // }
+    let style = {
+      height() {
+        return +getComputedStyle(canvas).getPropertyValue('height').slice(0,-2);
+      },
+      width() {
+        return +getComputedStyle(canvas).getPropertyValue('width').slice(0,-2);
+      }
+  }
 
-    canvas.setAttribute('width', 1000 * dpi);
-    canvas.setAttribute('height', 500 * dpi);
+    canvas.setAttribute('width', style.width() * dpi);
+    canvas.setAttribute('height', style.height() * dpi);
+  }
+}
+
+class Rectangle{
+
+  //TODO: Turn member values to private
+  constructor(xPos, height){
+     this.xPos = xPos
+    this.height = height;
+
+    console.log("Created Rectangle( " + xPos + ", " + height + ")")
+  }
+
+  getHeight(){
+    console.log("Returning height: " + this.height);
+    return this.height;
+  }
+
+  getXPos(){
+    return this.xPos;
   }
 }
 

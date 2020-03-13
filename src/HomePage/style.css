@@ -1,7 +1,7 @@
 .graphic-background{
-  width: 1000px;
+  width: 90%;
   height: 500px;
-  background: blue;
+  background: black;
   margin: auto;
   margin-top: 50px;
 }
