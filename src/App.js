@@ -1,13 +1,16 @@
 import React from 'react';
-import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import * as selectionSort from './selectionSort.js';
+import HomePage from './HomePage';
 
 function App() {
   return (
-    <div>
-      <h1>Sorting Algorithms</h1>
-      <button onClick={() => selectionSort.run()}>Selection Sort</button>
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+        </Switch>
+      </Router>
     </div>
   );
 }
