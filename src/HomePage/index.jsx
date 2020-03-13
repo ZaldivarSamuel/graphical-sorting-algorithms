@@ -19,6 +19,7 @@ class HomePage extends React.Component{
   }
 
   componentDidMount(){
+    this.fixDPI();
     this.drawSquares();
   }
 
@@ -27,8 +28,27 @@ class HomePage extends React.Component{
     var c = document.getElementById("selection-sort-canvas");
     var ctx = c.getContext("2d");
     ctx.beginPath();
-    ctx.rect(20,20,150,100);
-    ctx.stroke();
+    ctx.fillStyle = 'white';
+    ctx.fillRect(20,299,10,200);
+
+  }
+
+  fixDPI(){
+    let canvas = document.getElementById("selection-sort-canvas");
+    let ctx = canvas.getContext("2d");
+    let dpi = window.devicePixelRatio;
+
+    // let style = {
+    //   height(){
+    //     return window.getComputedStyle(canvas).getProperty('height').slice(0, -2);
+    //   },
+    //   width(){
+    //     return window.getComputedStyle(canvas).getProperty('width').slice(0,-2);
+    //   }
+    // }
+
+    canvas.setAttribute('width', 1000 * dpi);
+    canvas.setAttribute('height', 500 * dpi);
   }
 }
 
