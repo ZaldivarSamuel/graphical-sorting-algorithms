@@ -1,15 +1,22 @@
 import React from 'react';
 
 import './style.css';
+import * as selectionSort from '../selectionSort.js';
 
 class HomePage extends React.Component{
+
+  constructor(){
+    super();
+
+    this.rectangles = [new Rectangle(20, 200), new Rectangle(40, 100), new Rectangle(60, 250)];
+  }
 
   render(){
     return(
 
       <div>
         <h1>Sorting Algorithms</h1>
-        <button onClick={() => this.test()}>Run Selection Sort</button>
+        <button onClick={() => this.run()}>Run Selection Sort</button>
 
         <canvas id="selection-sort-canvas" className="graphic-background">
 
@@ -23,9 +30,13 @@ class HomePage extends React.Component{
     this.drawSquares();
   }
 
+  run(){
+    selectionSort.run(this.rectangles);
+  }
+
   drawSquares(){
 
-    var rectangles = [new Rectangle(20, 200)];
+    //var rectangles = [new Rectangle(20, 200), new Rectangle(40, 100), new Rectangle(60, 250)];
 
     var c = document.getElementById("selection-sort-canvas");
     var ctx = c.getContext("2d");
@@ -40,11 +51,10 @@ class HomePage extends React.Component{
   }
 
     ctx.beginPath();
-    ctx.fillStyle = 'yellow';
+    ctx.fillStyle = 'white';
 
-    for(var i = 0; i < rectangles.length; i++){
-      console.log("Index: " + i + ", xPos: " + rectangles[i].getXPos() + ", height: " + rectangles[i].getHeight());
-      ctx.fillRect(rectangles[i].getXPos(),style.height() - 205,10, rectangles[i].getHeight());
+    for(var i = 0; i < this.rectangles.length; i++){
+      ctx.fillRect(this.rectangles[i].getXPos(),style.height() - (this.rectangles[i].getHeight() + 5),10, this.rectangles[i].getHeight());
     }
   }
 
@@ -70,14 +80,11 @@ class Rectangle{
 
   //TODO: Turn member values to private
   constructor(xPos, height){
-     this.xPos = xPos
+    this.xPos = xPos
     this.height = height;
-
-    console.log("Created Rectangle( " + xPos + ", " + height + ")")
   }
 
   getHeight(){
-    console.log("Returning height: " + this.height);
     return this.height;
   }
 
