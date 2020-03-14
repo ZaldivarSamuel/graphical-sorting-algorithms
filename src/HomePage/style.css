@@ -4,4 +4,14 @@
   background: black;
   margin: auto;
   margin-top: 50px;
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.rectangle{
+  width: 10px;
+  background: white;
+  position: absolute;
+  bottom: 0;
 }
