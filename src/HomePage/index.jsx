@@ -24,6 +24,9 @@ class HomePage extends React.Component{
         <div className="container">
           <h1 id="title">Sorting Algorithms</h1>
           <div id="algoritm-selector-container">
+            <div className="algoritm-container">
+              <p className="algoritm-name">Selection Sort</p>
+            </div>
           </div>
         </div>
 
