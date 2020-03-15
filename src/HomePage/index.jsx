@@ -11,7 +11,7 @@ class HomePage extends React.Component{
 
     this.rectangleHeights = [];
 
-    for(var i = 1; i < 135; i++){
+    for(var i = 1; i < 175; i++){
       var height = Math.floor(Math.random() * 495) + 5;
       this.rectangleHeights[i - 1] = height;
     }

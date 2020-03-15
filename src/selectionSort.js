@@ -1,37 +1,83 @@
+
 export async function run(arr){
+  var sortedArray = arr.slice();
+  var indexArray = [];
 
-  for(let i = 0; i < arr.length - 1; i++){
-
-    // setTimeout(function(){
-    //   console.log("Red index: " + i);
-    //   var rectangle = document.getElementById("rect_"+i);
-    //   rectangle.style.backgroundColor = "red";
-    // }, 3000);
-
-
-
+  for(var i = 0; i < sortedArray.length-1;i++){
     var minIndex = i;
 
-    for(var j = i + 1; j < arr.length; j++){
-
-      if(arr[j] < arr[minIndex]){
+    for(var j = i + 1; j < sortedArray.length;j++){
+      if(sortedArray[j] < sortedArray[minIndex]){
         minIndex = j;
       }
     }
 
-    var temp = arr[i];
-    arr[i] = arr[minIndex];
-    arr[minIndex] = temp;
+    var temp = sortedArray[i];
+    sortedArray[i] = sortedArray[minIndex];
+    sortedArray[minIndex] = temp;
 
-    document.getElementById("rect_"+i).style.height = arr[i] + "px";
-    document.getElementById("rect_"+minIndex).style.height = arr[minIndex] + "px";
+    indexArray[i] = minIndex;
   }
 
-  console.log(arr);
+  for(var i = 0; i < arr.length - 1; i++){
+    for(var j = i + 1; j < arr.length; j++){
+      delayed(-100000, function(j){
+        return function(){
+          document.getElementById("rect_"+j).style.backgroundColor = "red";
+          if(j !== 0){
+            document.getElementById("rect_"+(j - 1)).style.backgroundColor = "white";
+          }
+        };
+      }(j));
+
+    }
+
+    delayed(-100000, function(i, sArray, oldArray, iArray){
+      return function(){
+        document.getElementById("rect_"+iArray[i]).style.height = document.getElementById("rect_"+i).style.height;
+        document.getElementById("rect_"+i).style.height = sArray[i] + "px";
+        document.getElementById("rect_"+(arr.length - 1)).style.backgroundColor = "white";
+      }
+    }(i, sortedArray, arr, indexArray));
+  }
 }
 
-function turnRectangleRed(index){
-  console.log("Red index: " + index);
-  var rectangle = document.getElementById("rect_"+index);
-  rectangle.style.backgroundColor = "red";
+export async function test(arr){
+
+  var i = 0,j;
+
+  for(; i < arr.length - 1; i++){
+    for(j = 0; j < arr.length; j++){
+      delayed(1, function(j){
+        return function(){
+          document.getElementById("rect_"+j).style.backgroundColor = "red";
+          if(j !== 0){
+            document.getElementById("rect_"+(j - 1)).style.backgroundColor = "white";
+          }
+        };
+      }(j));
+    }
+  }
 }
+
+// helper function
+var delayed = (function() {
+  var queue = [];
+
+  function processQueue() {
+    if (queue.length > 0) {
+      setTimeout(function () {
+        queue.shift().cb();
+        processQueue();
+      }, queue[0].delay);
+    }
+  }
+
+  return function delayed(delay, cb) {
+    queue.push({ delay: delay, cb: cb });
+
+    if (queue.length === 1) {
+      processQueue();
+    }
+  };
+}());
