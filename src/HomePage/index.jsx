@@ -11,7 +11,7 @@ class HomePage extends React.Component{
 
     this.rectangleHeights = [];
 
-    for(var i = 1; i < 175; i++){
+    for(var i = 1; i < 125; i++){
       var height = Math.floor(Math.random() * 495) + 5;
       this.rectangleHeights[i - 1] = height;
     }
@@ -21,13 +21,10 @@ class HomePage extends React.Component{
     return(
 
       <div>
-        <h1>Sorting Algorithms</h1>
-        <button onClick={() => this.run()}>Run Selection Sort</button>
-
-        <div className="graphic-background">
-            {this.rectangleHeights.map((value, index) => {
-              return <Rectangle rectID={index} height={value} />
-            })}
+        <div className="container">
+          <h1 id="title">Sorting Algorithms</h1>
+          <div id="algoritm-selector-container">
+          </div>
         </div>
 
       </div>
@@ -40,3 +37,12 @@ class HomePage extends React.Component{
 }
 
 export default HomePage;
+
+// <h1>Sorting Algorithms</h1>
+// <button onClick={() => this.run()}>Run Selection Sort</button>
+//
+// <div className="graphic-background">
+//     {this.rectangleHeights.map((value, index) => {
+//       return <Rectangle rectID={index} height={value} />
+//     })}
+// </div>

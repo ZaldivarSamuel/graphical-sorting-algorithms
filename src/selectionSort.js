@@ -32,31 +32,13 @@ export async function run(arr){
 
     }
 
-    delayed(-100000, function(i, sArray, oldArray, iArray){
+    delayed(-100000, function(i, sArray, iArray){
       return function(){
         document.getElementById("rect_"+iArray[i]).style.height = document.getElementById("rect_"+i).style.height;
         document.getElementById("rect_"+i).style.height = sArray[i] + "px";
         document.getElementById("rect_"+(arr.length - 1)).style.backgroundColor = "white";
       }
-    }(i, sortedArray, arr, indexArray));
-  }
-}
-
-export async function test(arr){
-
-  var i = 0,j;
-
-  for(; i < arr.length - 1; i++){
-    for(j = 0; j < arr.length; j++){
-      delayed(1, function(j){
-        return function(){
-          document.getElementById("rect_"+j).style.backgroundColor = "red";
-          if(j !== 0){
-            document.getElementById("rect_"+(j - 1)).style.backgroundColor = "white";
-          }
-        };
-      }(j));
-    }
+    }(i, sortedArray, indexArray));
   }
 }
 

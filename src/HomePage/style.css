@@ -1,3 +1,21 @@
+.container{
+  background: blue;
+  width: 1000px;
+  height: 700px;
+  margin: auto;
+  margin-top: 15px;
+}
+
+#title{
+  text-align: center;
+}
+
+#algoritm-selector-container{
+  width: 100%;
+  height: 200px;
+  background: green;
+}
+
 .graphic-background{
   width: 90%;
   height: 500px;
@@ -10,7 +28,7 @@
 }
 
 .rectangle{
-  width: 5px;
+  width: 7px;
   background: white;
   position: absolute;
   bottom: 0;
