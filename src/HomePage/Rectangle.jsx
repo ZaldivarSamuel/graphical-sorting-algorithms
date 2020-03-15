@@ -13,7 +13,7 @@ class Rectangle extends React.Component{
 
   render(){
     return(
-      <div id={"rect_"+this.state.id} className="rectangle" style={{left: 20 * this.state.id + 20, height : this.state.height}}>
+      <div id={"rect_"+this.state.id} className="rectangle" style={{left: 10 * this.state.id + 20, height : this.state.height}}>
       </div>
     )
   }

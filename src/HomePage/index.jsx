@@ -9,9 +9,12 @@ class HomePage extends React.Component{
   constructor(){
     super();
 
-    
+    this.rectangleHeights = [];
 
-    this.rectangleHeights = [100,300,200];
+    for(var i = 1; i < 135; i++){
+      var height = Math.floor(Math.random() * 495) + 5;
+      this.rectangleHeights[i - 1] = height;
+    }
   }
 
   render(){
